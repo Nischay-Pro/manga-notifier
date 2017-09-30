@@ -1,9 +1,9 @@
 {
-    
+
       "manifest_version": 2,
       "name": "Manga Notifier",
       "version": "1.0",
-    
+
       "description": "Notifies you when a new manga is released.",
       "homepage_url": "https://github.com/Nischay-Pro/manga-notifier",
       "icons": {
@@ -18,12 +18,12 @@
       "browser_action": {
         "default_icon": "icons/manga-48.png"
       },
-        
+
       "content_scripts": [
         {
           "matches": ["*://*.mangafox.me/*"],
-          "js": ["scripts/manga.js"]
+          "js": ["content_scripts/manga.js"]
         }
       ]
-    
+
 }
