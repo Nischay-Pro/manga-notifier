@@ -1,41 +1,47 @@
 {
 
-      "manifest_version": 2,
-      "name": "Manga Notifier",
-      "version": "1.0",
+    "manifest_version": 2,
+    "name": "Manga Notifier",
+    "version": "1.0",
 
-      "description": "Notifies you when a new manga is released.",
-      "homepage_url": "https://github.com/Nischay-Pro/manga-notifier",
-      "icons": {
+    "description": "Notifies you when a new manga is released.",
+    "homepage_url": "https://github.com/Nischay-Pro/manga-notifier",
+    "icons": {
         "48": "icons/manga-48.png",
         "96": "icons/manga-96.png"
-      },
+    },
 
-      "permissions": [
+    "web_accessible_resources": [
+        "options/options.html",
+        "options/options.js"
+    ],
+
+    "permissions": [
         "unlimitedStorage",
         "notifications",
         "storage",
         "*://mangafox.me/*",
-        "webRequest"
+        "webRequest",
+        "activeTab"
       ],
 
-      "background": {
+    "background": {
         "scripts": ["content_scripts/background.js"]
-      },
+    },
 
-      "options_ui" : {
-          "page" : "options/options.html"
-      },
+    "options_ui": {
+        "page": "options/options.html"
+    },
 
       "browser_action": {
-        "default_icon": "icons/manga-48.png"
+        "default_icon": "icons/manga-48.png",
+		"default_title": "Manga Notifier",
+		"default_popup": "popup/choose_interval.html"
       },
 
-      "content_scripts": [
-        {
-          "matches": ["*://mangafox.me/*"],
-          "js": ["content_scripts/manga.js"]
-        }
-      ]
+    "content_scripts": [{
+        "matches": ["*://mangafox.me/*"],
+        "js": ["content_scripts/manga.js"]
+    }]
 
 }
