@@ -3,7 +3,7 @@ function saveOptions(e) {
   browser.storage.local.set({
     frequency: $("#interval").children(":selected").attr("value")
   });
-  document.getElementById('frequencynot').innerText = $("#interval").children(":selected").attr("value") + " hour(s)";
+  document.getElementById('frequencynot').innerText = "Current Frequency for checking: " + $("#interval").children(":selected").attr("value") + " hour(s)";
 }
 
 function restoreOptions() {
@@ -11,7 +11,7 @@ function restoreOptions() {
   function setCurrentChoice(result) {
     console.log(result.frequency);
     document.getElementById('interval').value = result.frequency || 1;
-    $("#interval").children(":selected").id = result.frequency || 1;
+    $("#interval").val(result.frequency || 1).trigger('change');
     document.getElementById('frequencynot').innerText = "Current Frequency for checking: " + (result.frequency || 1) + " hour(s)";
 
   }
