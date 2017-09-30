@@ -4,7 +4,7 @@ function notify(message) {
     console.log(data.title)
     browser.notifications.create({
         "type": data.type,
-        "iconUrl": browser.extension.getURL("icons/link-48.png"),
+        "iconUrl": browser.extension.getURL("icons/manga-48.png"),
         "title": data.title,
         "message": data.content
     });

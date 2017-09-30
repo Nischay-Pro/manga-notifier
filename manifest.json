@@ -26,11 +26,7 @@
 
       "content_scripts": [
         {
-<<<<<<< HEAD
-          "matches": ["*://*.mangafox.me/*"],
-=======
           "matches": ["*://mangafox.me/*"],
->>>>>>> b508e3fdf4b874c337e90fb5cdf6249ca7d9d488
           "js": ["content_scripts/manga.js"]
         }
       ]
