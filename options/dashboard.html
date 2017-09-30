@@ -7,24 +7,64 @@
     <link rel="stylesheet" href="../css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/buttons-min.css">
     <link rel="stylesheet" href="../css/select2.min.css">
+    <link href="../css/icon.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet">
+    <link href="../css/ghpages-materialize.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css" media="screen,projection" />
+    <style>
+        .select2 {
+            width: 100%!important;
+        }
+    </style>
 </head>
 
-<body>
-    <form>
-        <p>Manga Notifier Settings Page</p>
-        <div id="frequencynot"></div>
-        <select class="js-example-basic-single" id="interval" name="interval">
-            <option value="1">1 hour</option>
-            <option value="4">4 hours</option>
-            <option value="8">8 hours</option>
-            <option value="16">16 hours</option>
-            <option value="24">24 hours (1 day) </option>
-</select>
-        <label>Border color<input type="text" id="color"></label>
-        <button type="submit">Save</button>
-    </form>
+<body class="themes">
+    <header>
+        <div class="fixed-announcement">
+            <div class="announcement">
+                <div class="container">Version 1.0 is coming soon! See this<a href="https://github.com/Dogfalo/materialize/issues/5004"> GitHub post</a>                    for more information.</div>
+            </div>
+        </div>
+        <nav class="top-nav">
+            <div class="container">
+                <div class="nav-wrapper"><a class="page-title">Manga Notifier</a></div>
+            </div>
+        </nav>
+        <div class="container"><a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a></div>
+        <ul id="nav-mobile" class="side-nav fixed">
+            <li class="logo"><a id="logo-container" href="/" class="brand-logo"> <object id="front-page-logo" type="image/svg+xml" data="../icons/book.svg">Your browser does not support SVG</object></a></li>
+            <li class="bold active"><a href="dashboard.html" class="waves-effect waves-teal">Settings</a></li>
+            <li class="bold"><a href="about.html" class="waves-effect waves-teal">About</a></li>
+        </ul>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row themes-section">
+                <form class="col s12">
+                    <div class="row">
+                        <div id="frequencynot"></div>
+                        <div class="input-field col s12">
+                            <select class="js-example-basic-single" id="interval" name="interval"> 
+                                        <option value="1">1 hour            </option> 
+                                        <option value="4">4 hours           </option> 
+                                        <option value="8">8 hours           </option> 
+                                        <option value="16">16 hours         </option> 
+                                        <option value="24">24 hours (1 day) </option> 
+                                    </select>
+                        </div>
+                        <div class="input-field col s12">
+                            <input id="password" type="text" class="validate">
+                            <label for="password">Password</label>
+                        </div>
+                    </div>
+                    <button type="submit">Save</button>
+                </form>
+            </div>
+        </div>
+    </main>
     <script src="../libs/jquery-3.2.1.min.js"></script>
     <script src="../libs/select2.min.js"></script>
+    <script type="text/javascript" src="../libs/materialize.min.js"></script>
     <script src="../js/dashboard.js"></script>
 </body>
 
