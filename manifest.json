@@ -14,11 +14,16 @@
       "permissions": [
         "unlimitedStorage",
         "notifications",
-		"activeTab"
+		"activeTab",
+        "storage"
       ],
 
       "background": {
         "scripts": ["content_scripts/background.js"]
+      },
+
+      "options_ui" : {
+          "page" : "options/options.html"
       },
 
       "browser_action": {
