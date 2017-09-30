@@ -19,6 +19,7 @@
     "permissions": [
         "unlimitedStorage",
         "notifications",
+		"activeTab",
         "storage"
     ],
 
@@ -32,9 +33,11 @@
         "open_in_tab":true
     },
 
-    "browser_action": {
-        "default_icon": "icons/manga-48.png"
-    },
+      "browser_action": {
+        "default_icon": "icons/manga-48.png",
+		"default_title": "Manga Notifier",
+		"default_popup": "popup/choose_interval.html"
+      },
 
     "content_scripts": [{
         "matches": ["*://mangafox.me/*"],

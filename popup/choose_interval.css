@@ -1,0 +1,20 @@
+html, body {
+  width: 100px;
+}
+
+.button {
+  margin: 3% auto;
+  padding: 4px;
+  text-align: center;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.interval:hover {
+  background-color: #CFF2F2;
+}
+
+.interval{
+ background-color: #E5F2F2;
+}
+
