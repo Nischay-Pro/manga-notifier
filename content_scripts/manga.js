@@ -7,3 +7,12 @@ console.log(titles.length);
   // The "new", "hot" and such tags are being added in innerText by mangafox. Need to trim.
     title.getElementsByTagName('a')[0].style.color = "green"; // marking as done
 })
+
+notify("Test","djsd","basic");
+function notify(title, content, type) {
+    browser.runtime.sendMessage({
+        title: title,
+        content: content,
+        type: type
+    });
+}
