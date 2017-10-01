@@ -52,8 +52,7 @@ $('.js-example-basic-single').select2({
 });
 $('.chips').material_chip({
   placeholder: 'Enter a tag',
-  limit: Infinity,
-  minLength: 1
+  limit: Infinity
 });
 document.addEventListener("DOMContentLoaded", restoreOptions);
 document.querySelector("form").addEventListener("submit", saveOptions);
