@@ -39,7 +39,7 @@
       },
 
     "content_scripts": [{
-        "matches": ["*://mangafox.me/*"],
+        "matches": ["<all_urls>"],
         "js": ["content_scripts/manga.js"]
     }]
 
