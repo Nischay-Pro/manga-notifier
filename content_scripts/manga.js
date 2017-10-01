@@ -1,4 +1,3 @@
-var nIntervId;
 
 var running = browser.storage.local.get("running");
 running.then(function(item){
@@ -23,11 +22,8 @@ function startSync() {
     if (item.frequency !== void 0) {
       frequency = item.frequency;
     }
-    // repeating call that reloads the data
+    // single call to start the sync loop
     browser.runtime.sendMessage({});
-    nIntervId = setInterval(function () {
-      browser.runtime.sendMessage({});
-    }, frequency*3600*1000);
   }
 
   var getting = browser.storage.local.get("data");
@@ -35,3 +31,12 @@ function startSync() {
     console.log(error);
   });
 }
+
+function onWindowClosing(e) {
+  console.log("Window closing.");
+  // browser.storage.local.set({
+  //   running: "0"
+  // });
+}
+
+window.onbeforeunload = onWindowClosing;

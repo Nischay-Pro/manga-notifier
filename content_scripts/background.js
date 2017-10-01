@@ -1,3 +1,6 @@
+var nIntervId = 0;
+var currFreq = 1;
+
 function notify(message) {
     var data = message;
     browser.notifications.create({
@@ -8,7 +11,12 @@ function notify(message) {
     });
 }
 
-function refresh(message){
+function bgLoop (message) {
+  refresh();
+  nIntervId = setInterval(refresh, 10*1*1000); // currFreq * 3600 * 1000
+}
+
+function refresh(){
   // console.log("refresh called.");
   var getting = browser.storage.local.get("data");
   getting.then(function(res){
@@ -63,4 +71,4 @@ function getContent(links,ind) {
   xhr.send();
 }
 
-browser.runtime.onMessage.addListener(refresh);
+browser.runtime.onMessage.addListener(bgLoop);
