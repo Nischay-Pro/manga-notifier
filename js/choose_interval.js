@@ -9,3 +9,5 @@ document.addEventListener('DOMContentLoaded', function () {
   console.log(settingsbutton);
   settingsbutton.addEventListener('click', openInNewTab);
 });
+var manifest = chrome.runtime.getManifest() || browser.runtime.getManifest();
+document.getElementById("test").innerHTML = 'Manga Notifier <h6>v' + manifest.version;
