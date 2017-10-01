@@ -21,7 +21,8 @@
         "storage",
         "*://mangafox.me/*",
         "webRequest",
-        "activeTab"
+        "activeTab",
+        "tabs"
       ],
 
     "background": {
