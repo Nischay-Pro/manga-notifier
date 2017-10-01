@@ -1,8 +1,10 @@
 var nIntervId = 0;
 var currFreq = 1;
+var running = 0;
 
 function notify(message) {
     var data = message;
+    console.log(data.type + "," + data.title + "," + data.content);
     browser.notifications.create({
         "type": data.type,
         "iconUrl": browser.extension.getURL("icons/manga-48.png"),
@@ -12,8 +14,17 @@ function notify(message) {
 }
 
 function bgLoop (message) {
-  refresh();
-  nIntervId = setInterval(refresh, 10*1*1000); // currFreq * 3600 * 1000
+
+  if (running == 0){
+    console.log("running bgLoop");
+    running = 1;
+    refresh();
+    nIntervId = setInterval(refresh, 10*1*1000); // currFreq * 3600 * 1000
+  }
+  else{
+    console.log("running = " + running + ". Not running bgLoop");
+  }
+
 }
 
 function refresh(){
@@ -21,8 +32,18 @@ function refresh(){
   var getting = browser.storage.local.get("data");
   getting.then(function(res){
     console.log(res);
-    var links = res.data.mangaTags;
-    getContent(links,0);
+    // Check if freq is the same. Else clear and restart.
+    if(res.data.frequency == currFreq){
+      var links = res.data.mangaTags;
+      getContent(links,0);
+    }
+    else{
+      console.log("Freq changed.");
+      currFreq = res.data.frequency;
+      clearInterval(nIntervId); // clear currently running interval
+      running = 0; // needed so that bgLoop restarts properly
+      bgLoop({}); // call bgloop in order to restart the loop with new freq
+    }
   });
 }
 
@@ -46,14 +67,21 @@ function getContent(links,ind) {
             // value exists
             if(res[url] !== titles[0].innerText){
               //something new. Notify user.
+              //innerText needs to be trimmed to remove chapter number
               notify({
                 type: "basic",
                 title: titles[0].innerText,
-                message: "New content uploaded."
+                content: "New content uploaded."
               });
-            } else {
-              console.log("No new chapters for " + res[url]);
             }
+            // else {
+            //   // console.log("No new chapters for " + res[url]);
+            //   notify({
+            //     type: "basic",
+            //     title: titles[0].innerText,
+            //     content: "No new content."
+            //   });
+            // }
           } else {
             // add value
             var obj = {};
