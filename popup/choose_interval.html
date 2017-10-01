@@ -4,19 +4,33 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../css/choose_interval.css" />
   <link rel="stylesheet" href="../css/font-awesome.min.css">
-  <link rel="stylesheet" href="../css/buttons-min.css">
-  <script src="../js/choose_interval.js"></script>
+  <link rel="stylesheet" href="../css/select2.min.css">
+  <link href="../css/icon.css" rel="stylesheet">
+  <link href="../css/prism.css" rel="stylesheet">
+  <link href="../css/ghpages-materialize.css" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="../css/materialize.min.css" media="screen,projection" />
 </head>
 
 <body>
-  <p>Manga Notifier</p>
-  <button id="settings-button" class="button-secondary pure-button">
-      <i class="fa fa-wrench" aria-hidden="true"></i>  
-      Settings
-  </button>
-
+  <div class="row">
+    <div class="col s16">
+      <div class="card-panel grey lighten-5 z-depth-1">
+        <div class="row valign-wrapper">
+          <div class="col s6">
+            <img src="../icons/manga-96.png" alt="">
+          </div>
+          <div class="col s10">
+            <h5 id="test">Manga Notifier</h5>
+            <a id="settings-button" class="waves-effect waves-light btn"><i class="material-icons left">settings</i>Settings</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../libs/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="../libs/materialize.min.js"></script>
+  <script type="text/javascript" src="../js/choose_interval.js"></script>
 </body>
 
 </html>

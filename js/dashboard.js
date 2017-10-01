@@ -1,6 +1,6 @@
 function saveOptions(e) {
   e.preventDefault();
-  browser.storage.local.set({
+  chrome.storage.local.set({
     data: {
       frequency: $("#interval").children(":selected").attr("value"),
       mangaTags: $('#chips').material_chip('data')
@@ -31,7 +31,7 @@ function restoreOptions() {
     Materialize.toast(`Error: ${error}`, 4000)
   }
 
-  var getting = browser.storage.local.get("data");
+  var getting = chrome.storage.local.get("data",function (result){setCurrentChoice(result)}) || browser.storage.local.get("data");
   getting.then(setCurrentChoice, onError);
 }
 

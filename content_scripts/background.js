@@ -9,7 +9,7 @@ function notify(message) {
 }
 
 function refresh(message){
-  console.log("refresh called.");
+  // console.log("refresh called.");
   var getting = browser.storage.local.get("data");
   getting.then(function(res){
     console.log(res);
