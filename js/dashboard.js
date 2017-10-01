@@ -13,7 +13,7 @@ function saveOptions(e) {
 function restoreOptions() {
 
   function setCurrentChoice(result) {
-    console.log(result.data.frequency);
+    console.log(result);
     document.getElementById('interval').value = result.data.frequency || 1;
     $("#interval").val(result.data.frequency || 1).trigger('change');
     document.getElementById('frequencynot').innerText = "Current Frequency for checking: " + (result.data.frequency || 1) + " hour(s)";
