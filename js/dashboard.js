@@ -1,26 +1,29 @@
 function saveOptions(e) {
   e.preventDefault();
   browser.storage.local.set({
-    frequency: $("#interval").children(":selected").attr("value")
-  });
+    data: {
+    frequency: $("#interval").children(":selected").attr("value"),
+    links: document.querySelector("#input_url").value.split(',')
+    }
+});
   document.getElementById('frequencynot').innerText = "Current Frequency for checking: " + $("#interval").children(":selected").attr("value") + " hour(s)";
 }
 
 function restoreOptions() {
 
   function setCurrentChoice(result) {
-    console.log(result.frequency);
-    document.getElementById('interval').value = result.frequency || 1;
-    $("#interval").val(result.frequency || 1).trigger('change');
-    document.getElementById('frequencynot').innerText = "Current Frequency for checking: " + (result.frequency || 1) + " hour(s)";
-
+    console.log(result);
+    document.querySelector("#input_url").value = result.data.links || "";
+    document.getElementById('interval').value = result.data.frequency || 1;
+    $("#interval").val(result.data.frequency || 1).trigger('change');
+    document.getElementById('frequencynot').innerText = "Current Frequency for checking: " + (result.data.frequency || 1) + " hour(s)";
   }
 
   function onError(error) {
     console.log(`Error: ${error}`);
   }
 
-  var getting = browser.storage.local.get("frequency");
+  var getting = browser.storage.local.get("data");
   getting.then(setCurrentChoice, onError);
 }
 
