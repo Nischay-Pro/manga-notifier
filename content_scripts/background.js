@@ -19,7 +19,7 @@ function bgLoop (message) {
     console.log("running bgLoop");
     running = 1;
     refresh();
-    nIntervId = setInterval(refresh, 10*1*1000); // currFreq * 3600 * 1000
+    nIntervId = setInterval(refresh, currFreq*3600*1000); // 10 * 1 * 1000
   }
   else{
     console.log("running = " + running + ". Not running bgLoop");
