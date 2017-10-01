@@ -6,7 +6,7 @@ function openInNewTab() {
 
 document.addEventListener('DOMContentLoaded', function () {
   var settingsbutton = document.getElementById("settings-button");
-  console.log(settingsbutton);
+  // console.log(settingsbutton);
   settingsbutton.addEventListener('click', openInNewTab);
 });
 var manifest = chrome.runtime.getManifest() || browser.runtime.getManifest();

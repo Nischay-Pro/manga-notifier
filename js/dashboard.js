@@ -14,7 +14,7 @@ function saveOptions(e) {
 function restoreOptions() {
 
   function setCurrentChoice(result) {
-    console.log(result);
+    // console.log(result);
     document.getElementById('interval').value = result.data.frequency || 1;
     $("#interval").val(result.data.frequency || 1).trigger('change');
     document.getElementById('frequencynot').innerText = "Current Frequency for checking: " + (result.data.frequency || 1) + " hour(s)";
@@ -25,7 +25,7 @@ function restoreOptions() {
       data: result.data.mangaTags
     });
     document.getElementById('debug').checked = result.data.debugMode;
-    console.log(result.data.mangaTags);
+    // console.log(result.data.mangaTags);
   }
 
   function onError(error) {
@@ -44,7 +44,7 @@ function formatState(state) {
   var $state = $(
     '<span>' + state.text + '</span>'
   );
-  console.log(state.text);
+  // console.log(state.text);
   return $state;
 };
 $('.js-example-basic-single').select2({

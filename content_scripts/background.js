@@ -4,7 +4,7 @@ var running = 0;
 
 function notify(message) {
     var data = message;
-    console.log(data.type + "," + data.title + "," + data.content);
+    // console.log(data.type + "," + data.title + "," + data.content);
     browser.notifications.create({
         "type": data.type,
         "iconUrl": browser.extension.getURL("icons/manga-48.png"),
@@ -16,14 +16,14 @@ function notify(message) {
 function bgLoop (message) {
 
   if (running == 0){
-    console.log("running bgLoop");
+    // console.log("running bgLoop");
     running = 1;
     refresh();
     nIntervId = setInterval(refresh, currFreq*3600*1000); // 10 * 1 * 1000
   }
-  else{
-    console.log("running = " + running + ". Not running bgLoop");
-  }
+  // else{
+  //   console.log("running = " + running + ". Not running bgLoop");
+  // }
 
 }
 
@@ -31,14 +31,14 @@ function refresh(){
   // console.log("refresh called.");
   var getting = browser.storage.local.get("data");
   getting.then(function(res){
-    console.log(res);
+    // console.log(res);
     // Check if freq is the same. Else clear and restart.
     if(res.data.frequency == currFreq){
       var links = res.data.mangaTags;
       getContent(links,0);
     }
     else{
-      console.log("Freq changed.");
+      // console.log("Freq changed.");
       currFreq = res.data.frequency;
       clearInterval(nIntervId); // clear currently running interval
       running = 0; // needed so that bgLoop restarts properly
@@ -49,7 +49,7 @@ function refresh(){
 
 function getContent(links,ind) {
   var url = links[ind].tag;
-  console.log("getContent called with " + url);
+  // console.log("getContent called with " + url);
 
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function (){
