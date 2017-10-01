@@ -3,7 +3,8 @@ function saveOptions(e) {
   chrome.storage.local.set({
     data: {
       frequency: $("#interval").children(":selected").attr("value"),
-      mangaTags: $('#chips').material_chip('data')
+      mangaTags: $('#chips').material_chip('data'),
+      debugMode: $('#debug').prop('checked')
     }
   });
   document.getElementById('frequencynot').innerText = "Current Frequency for checking: " + $("#interval").children(":selected").attr("value") + " hour(s)";
@@ -23,6 +24,7 @@ function restoreOptions() {
       minLength: 1,
       data: result.data.mangaTags
     });
+    document.getElementById('debug').checked = result.data.debugMode;
     console.log(result.data.mangaTags);
   }
 
@@ -50,8 +52,7 @@ $('.js-example-basic-single').select2({
 });
 $('.chips').material_chip({
   placeholder: 'Enter a tag',
-  limit: Infinity,
-  minLength: 1
+  limit: Infinity
 });
 document.addEventListener("DOMContentLoaded", restoreOptions);
 document.querySelector("form").addEventListener("submit", saveOptions);
