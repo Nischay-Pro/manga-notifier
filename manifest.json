@@ -1,5 +1,6 @@
 {
     "author": "Point Blank",
+    "version": "1.1.1",
     "background": {
         "page": "background.html",
         "persistent": true
@@ -39,7 +40,6 @@
         "activeTab",
         "tabs"
     ],
-    "version": "1.1",
     "web_accessible_resources": [
         "options/options.html"
     ],

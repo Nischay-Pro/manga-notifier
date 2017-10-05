@@ -67,12 +67,16 @@ function getContent(links,ind) {
             // value exists
             if(res[url] !== titles[0].innerText){
               //something new. Notify user.
-              //innerText needs to be trimmed to remove chapter number
+              //innerText could be trimmed to remove chapter number
               notify({
                 type: "basic",
                 title: titles[0].innerText,
                 content: "New content uploaded."
               });
+              // modify last seen chapter
+              var obj = {};
+              obj[url] = titles[0].innerText;
+              browser.storage.local.set(obj);
             }
             // else {
             //   // console.log("No new chapters for " + res[url]);
