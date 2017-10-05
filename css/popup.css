@@ -58,3 +58,15 @@ body {
 .material-setting {
   background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAABCUlEQVR4AcXSP0oDURDH8e/u2vmnFRFPIQqeQgTRwqCIN7AwINiIIJJsIQTEQhBT6Am0UAQttLGWJZWEoHgCV7L6BBmG2QdhX5fPr/vNTALLYyh2cZIdglzpQZsgL3rwzEAxT9yyzAxtfvSg4JxpVrjjkYiSLVn5xWnKzTrGBJ+4irwzhjryhq80aJJ57QGqRm4Gx8QAJLRM+8Uqxhxd/fUYQaL/8sYsnj0ZNbBSaesw6KAZdrBAT0YZCYIROtJ2mcfY4BunaZHI+olpc9ZQh94HzEhJ6XjtPmqcD1xFeoxibFY+jRolEQ9cs8gUZxS63OeUSZa44Z4o/HlXutSDC4LUKf7TZ5sh+AObx91kL015YwAAAABJRU5ErkJggg==") top left no-repeat;
 }
+
+.material-add {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAHUlEQVR4AWNAgFHwHwhHNWBVhBtSqgETjMbDKAAA6iwzzdTyG+0AAAAASUVORK5CYII=");
+}
+
+.material-done {
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAASUlEQVR4AWPADUaBFmnKQxh+MzSQpvw/Q8PwU87KsIohkBTTI4CSvxiCSHAMUPI/UFEQunLCWoLRlBPWglBOpBaYcqK1YCgfBQDw0y1mS9NLDAAAAABJRU5ErkJggg==');
+}
+
+.material-remove {
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAGElEQVR4AWMgDEbBKPiPG1KqAROMglEAAAoWG+UEvH49AAAAAElFTkSuQmCC');
+}
