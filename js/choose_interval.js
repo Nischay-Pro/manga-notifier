@@ -5,7 +5,7 @@ function openInNewTab() {
 }
 
 function modifyUrl(add) {
-	console.log("modify"+add);
+	//console.log("modify"+add);
 	//if add == false, remove
 	chrome.tabs.query({'active': true}, function (tabs) {
 		url = tabs[0].url;
@@ -22,22 +22,22 @@ function modifyUrl(add) {
 		  var mangaTags = data.data.mangaTags;
 		  if (add) {
 		  	//add tag
-				console.log("before");
-				console.log(mangaTags);
+				//console.log("before");
+				//console.log(mangaTags);
 			  mangaTags.push({
 			  	tag: url
 			  });
-				console.log("afer");
-				console.log(mangaTags);
+				//console.log("afer");
+				//console.log(mangaTags);
 			} else {
-				console.log("before");
-				console.log(mangaTags);
+				//console.log("before");
+				//console.log(mangaTags);
 				//remove all items that have tag == url
 				mangaTags = mangaTags.filter(function(item) {
 					return item.tag !== url;
 				});
-				console.log("afer");
-				console.log(mangaTags);
+				//console.log("afer");
+				//console.log(mangaTags);
 			}
 			data.data.mangaTags = mangaTags;
 		  updateAddMangaButton(add);
@@ -99,7 +99,7 @@ function updateAddMangaButton(isMangaAdded) {
 	var icon = document.getElementById("add-url-icon");
 
 	if (isMangaAdded) {
-		console.log("manga alr added");
+		//console.log("manga alr added");
 		title.innerHTML = titleAdded;
 		description.innerHTML = descriptionAdded;
 		icon.classList.add("material-done");
@@ -129,8 +129,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	var settingsbutton = document.getElementById("settings-button");
   // console.log(settingsbutton);
   settingsbutton.addEventListener('click', openInNewTab);
-  
-  
+
+
   chrome.storage.local.get("data", function (data) {
 	  // if data doesn't exist yet
 	  if (!data.data) {
@@ -143,8 +143,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	  		var added = false;
 	  		for (var i = 0; i < mangaTags.length; i++) {
-	  			console.log(mangaTags[i].tag);
-	  			console.log(url);
+	  			//console.log(mangaTags[i].tag);
+	  			//console.log(url);
 	  			if (mangaTags[i].tag == url) {
 	  				added = true;
 	  				break;

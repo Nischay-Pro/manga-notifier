@@ -79,7 +79,7 @@ function getContent(links,ind) {
               browser.storage.local.set(obj);
             }
             // else {
-            //   // console.log("No new chapters for " + res[url]);
+            //   console.log("No new chapters for " + res[url]);
             //   notify({
             //     type: "basic",
             //     title: titles[0].innerText,
