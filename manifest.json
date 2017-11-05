@@ -36,6 +36,7 @@
         "notifications",
         "storage",
         "*://mangafox.me/*",
+        "*://mangastream.com/*",
         "webRequest",
         "activeTab",
         "tabs"
