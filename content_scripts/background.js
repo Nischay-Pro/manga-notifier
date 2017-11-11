@@ -1,17 +1,24 @@
 var nIntervId = 0;
 var currFreq = 1;
 var running = 0;
-var mangastream_base_url = "https://mangastream.com/";
+var mangastream_base_url = "https://mangastream.com";
+var mangafox_base_url = "http://mangafox.me";
 
 function notify(message) {
     var data = message;
     // console.log(data.type + "," + data.title + "," + data.content);
-    browser.notifications.create({
+    var notif = browser.notifications.create(data.url, {
         "type": data.type,
         "iconUrl": browser.extension.getURL("icons/manga-48.png"),
         "title": data.title,
         "message": data.content
     });
+}
+
+function notifClicked(notifId){
+  var creating = browser.tabs.create({
+    url: notifId
+  });
 }
 
 function bgLoop (message) {
@@ -62,11 +69,13 @@ function getContent(links,ind) {
       var doc = parser.parseFromString(this.responseText, "text/html");
 
       var latestTitle = "";
+      var latestUrl = "";
       if(/mangafox/i.test(url)){
         // Mangafox link. Parse accordingly
         var titles = doc.getElementsByClassName("tips");
         latestTitle = titles[0];
-        // console.log(latestTitle.innerText);
+        latestUrl = mangafox_base_url + latestTitle.pathname;
+        // console.log("URL: " + mangafox_base_url + latestTitle.pathname);
       } else if (/mangastream/i.test(url)) {
         // Mangastream url. Parse accordingly
         var rows = doc.getElementsByTagName('tr'); // Collection of rows
@@ -78,6 +87,7 @@ function getContent(links,ind) {
         latestTitle = child0;
 
         var link0 = child0.firstChild; // <a href>
+        latestUrl = mangastream_base_url + link0.pathname;
         // console.log(link0);
         // console.log("Path: " + link0.pathname);
         // console.log("Link: " + mangastream_base_url + link0.pathname); // URL to chapter
@@ -95,6 +105,7 @@ function getContent(links,ind) {
               notify({
                 type: "basic",
                 title: latestTitle.innerText,
+                url: latestUrl,
                 content: "New content uploaded."
               });
               // modify last seen chapter
@@ -104,11 +115,12 @@ function getContent(links,ind) {
             }
             // else {
             //   // No new chapters case. Can be used to test features while debugging. Should be commented out in release versions.
-            //   console.log("No new chapters for " + res[url]);
+            //   console.log("No new chapters for " + latestUrl);
             //   // to test the notifs
             //   notify({
             //     type: "basic",
             //     title: latestTitle.innerText,
+            //     url: latestUrl,
             //     content: "No new content."
             //   });
             // }
@@ -130,3 +142,4 @@ function getContent(links,ind) {
 }
 
 browser.runtime.onMessage.addListener(bgLoop);
+browser.notifications.onClicked.addListener(notifClicked);
