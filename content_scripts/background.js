@@ -75,7 +75,7 @@ function getContent(links, ind) {
         latestTitle = titles[0];
         latestUrl = mangafox_base_url + latestTitle.pathname;
         // console.log("URL: " + mangafox_base_url + latestTitle.pathname);
-      } else if (/mangastream/i.test(url)) {
+      } else if (/mangastream/i.test(url) || /readms/i.test(url)) {
         // Mangastream url. Parse accordingly
         var rows = doc.getElementsByTagName('tr'); // Collection of rows
         var r0 = rows[1]; // Start with 1 because row[0] is the header of the table i.e. 'Chapter' and 'Released'
