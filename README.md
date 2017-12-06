@@ -1,8 +1,8 @@
 # Manga Notifier
-An extension that provides notifications when new Manga chapters have been released. Currently only checks [Mangafox](https://mangafox.me/releases) for updates.
+An extension that provides notifications when new Manga chapters have been released. Currently only checks [Mangafox](https://mangafox.la/releases) for updates.
 
 ## Instructions
-After loading the extension in a manner of your choice, first go to the settings page via the button provided in the toolbar. This setup is necessary for the extension to know which URLs to listen to. The URLs must be direct links to that Manga's series page viz [The Gamer](https://mangafox.me/manga/the_gamer). After saving, loading any new page will trigger the first refresh.
+After loading the extension in a manner of your choice, first go to the settings page via the button provided in the toolbar. This setup is necessary for the extension to know which URLs to listen to. The URLs must be direct links to that Manga's series page viz [The Gamer](https://mangafox.la/manga/the_gamer). After saving, loading any new page will trigger the first refresh.
 
 **_Note:_** Since the minimum frequency possible in the settings is 1 hour, any debugging or process observation cannot be undertaken without manually hard coding the frequency to a more convenient value (such as 10-15 seconds). The Debug toggle in the settings currently does nothing, but in a future update the toggle will determine whether to use default frequency or high frequency.
 

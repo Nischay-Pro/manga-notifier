@@ -12,16 +12,14 @@
         "default_title": "Manga Notifier",
         "default_popup": "popup/choose_interval.html"
     },
-    "content_scripts": [
-        {
-            "matches": [
-                "<all_urls>"
-            ],
-            "js": [
-                "content_scripts/manga.js"
-            ]
-        }
-    ],
+    "content_scripts": [{
+        "matches": [
+            "<all_urls>"
+        ],
+        "js": [
+            "content_scripts/manga.js"
+        ]
+    }],
     "description": "Notifies you when a new manga is released.",
     "homepage_url": "https://github.com/Nischay-Pro/manga-notifier",
     "icons": {
@@ -35,8 +33,8 @@
         "unlimitedStorage",
         "notifications",
         "storage",
-        "*://mangafox.me/*",
-        "*://mangastream.com/*",
+        "*://mangafox.la/*",
+        "*://readms.net/*",
         "webRequest",
         "activeTab",
         "tabs"

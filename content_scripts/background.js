@@ -1,33 +1,33 @@
 var nIntervId = 0;
 var currFreq = 1;
 var running = 0;
-var mangastream_base_url = "https://mangastream.com";
-var mangafox_base_url = "http://mangafox.me";
+var mangastream_base_url = "http://readms.net/";
+var mangafox_base_url = "http://mangafox.la";
 
 function notify(message) {
-    var data = message;
-    // console.log(data.type + "," + data.title + "," + data.content);
-    var notif = browser.notifications.create(data.url, {
-        "type": data.type,
-        "iconUrl": browser.extension.getURL("icons/manga-48.png"),
-        "title": data.title,
-        "message": data.content
-    });
+  var data = message;
+  // console.log(data.type + "," + data.title + "," + data.content);
+  var notif = browser.notifications.create(data.url, {
+    "type": data.type,
+    "iconUrl": browser.extension.getURL("icons/manga-48.png"),
+    "title": data.title,
+    "message": data.content
+  });
 }
 
-function notifClicked(notifId){
+function notifClicked(notifId) {
   var creating = browser.tabs.create({
     url: notifId
   });
 }
 
-function bgLoop (message) {
+function bgLoop(message) {
 
-  if (running == 0){
+  if (running == 0) {
     // console.log("running bgLoop");
     running = 1;
     refresh();
-    nIntervId = setInterval(refresh, currFreq*3600*1000); // 10 * 1 * 1000
+    nIntervId = setInterval(refresh, currFreq * 3600 * 1000); // 10 * 1 * 1000
   }
   // else{
   //   console.log("running = " + running + ". Not running bgLoop");
@@ -35,18 +35,17 @@ function bgLoop (message) {
 
 }
 
-function refresh(){
+function refresh() {
   // console.log("refresh called.");
   var getting = browser.storage.local.get("data");
-  getting.then(function(res){
+  getting.then(function (res) {
     // console.log(res);
     // Check if freq is the same. Else clear and restart.
 
-    if(res.data.frequency == currFreq){
+    if (res.data.frequency == currFreq) {
       var links = res.data.mangaTags;
-      getContent(links,0);
-    }
-    else{
+      getContent(links, 0);
+    } else {
       // console.log("Freq changed.");
       currFreq = res.data.frequency;
       clearInterval(nIntervId); // clear currently running interval
@@ -56,21 +55,21 @@ function refresh(){
   });
 }
 
-function getContent(links,ind) {
+function getContent(links, ind) {
   var url = links[ind].tag;
   // console.log("getContent called with " + url);
 
   var xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function (){
+  xhr.onreadystatechange = function () {
     // console.log("status " + this.status);
-    if(this.readyState == 4){
+    if (this.readyState == 4) {
       // console.log("text parsing begins. status " + this.status);
       var parser = new DOMParser();
       var doc = parser.parseFromString(this.responseText, "text/html");
 
       var latestTitle = "";
       var latestUrl = "";
-      if(/mangafox/i.test(url)){
+      if (/mangafox/i.test(url)) {
         // Mangafox link. Parse accordingly
         var titles = doc.getElementsByClassName("tips");
         latestTitle = titles[0];
@@ -93,13 +92,13 @@ function getContent(links,ind) {
         // console.log("Link: " + mangastream_base_url + link0.pathname); // URL to chapter
       }
 
-      if(latestTitle !== void 0){
+      if (latestTitle !== void 0) {
         // chapters exist. test if notif needed
         var lastSeen = browser.storage.local.get(url);
         lastSeen.then(function (res) {
-          if(res[url] !== void 0){
+          if (res[url] !== void 0) {
             // value exists
-            if(res[url] !== latestTitle.innerText){
+            if (res[url] !== latestTitle.innerText) {
               //something new. Notify user.
               //innerText could be trimmed to remove chapter number
               notify({
@@ -132,12 +131,12 @@ function getContent(links,ind) {
           }
         });
       }
-      if(links[ind+1] !== void 0){
-        getContent(links,ind+1);
+      if (links[ind + 1] !== void 0) {
+        getContent(links, ind + 1);
       }
     }
   };
-  xhr.open("GET",url,true);
+  xhr.open("GET", url, true);
   xhr.send();
 }
 
