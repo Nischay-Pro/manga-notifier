@@ -1,9 +1,15 @@
 {
     "author": "Point Blank",
-    "version": "1.3.2",
+    "version": "1.3.3",
     "background": {
         "page": "background.html",
         "persistent": true
+    },
+    "applications": {
+        "gecko": {
+            "id": "{91b8ebd6-a262-4f4d-a290-a1b91f891dc2}",
+            "strict_min_version": "48.0"
+        }
     },
     "browser_action": {
         "default_icon": {
