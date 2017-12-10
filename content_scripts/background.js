@@ -71,25 +71,52 @@ function getContent(links, ind) {
       var latestUrl = "";
       if (/mangafox/i.test(url)) {
         // Mangafox link. Parse accordingly
+
+      try {
         var titles = doc.getElementsByClassName("tips");
         latestTitle = titles[0];
         latestUrl = mangafox_base_url + latestTitle.pathname;
-        // console.log("URL: " + mangafox_base_url + latestTitle.pathname);
+      // console.log("URL: " + mangafox_base_url + latestTitle.pathname);
+      } catch (e) {
+        // error in parsing implies either malformed url
+        // or wrong response due to bad internet
+
+        latestTitle = void 0; // so that it doesn't trigger the notifications or check block
+
+        if(e instanceof TypeError){
+          console.log("TypeError: Please check if the url is valid. If the url is working, it could be an internet issue.");
+          console.log("Error thrown with URL: " + url);
+        } else {
+          console.log(e);
+        }
+      }
+
       } else if (/mangastream/i.test(url) || /readms/i.test(url)) {
         // Mangastream url. Parse accordingly
-        var rows = doc.getElementsByTagName('tr'); // Collection of rows
-        var r0 = rows[1]; // Start with 1 because row[0] is the header of the table i.e. 'Chapter' and 'Released'
-        // console.log(r0);
-        var child0 = r0.children[0]; // First <td> in the <tr>, i.e. Name of Chapter
-        // console.log(child0);
-        // console.log("Chapter Name: " + child0.innerText); // Chapter Name
-        latestTitle = child0;
+        try {
+          var rows = doc.getElementsByTagName('tr'); // Collection of rows
+          var r0 = rows[1]; // Start with 1 because row[0] is the header of the table i.e. 'Chapter' and 'Released'
+          // console.log(r0);
+          var child0 = r0.children[0]; // First <td> in the <tr>, i.e. Name of Chapter
+          // console.log(child0);
+          // console.log("Chapter Name: " + child0.innerText); // Chapter Name
+          latestTitle = child0;
 
-        var link0 = child0.firstChild; // <a href>
-        latestUrl = mangastream_base_url + link0.pathname;
-        // console.log(link0);
-        // console.log("Path: " + link0.pathname);
-        // console.log("Link: " + mangastream_base_url + link0.pathname); // URL to chapter
+          var link0 = child0.firstChild; // <a href>
+          latestUrl = mangastream_base_url + link0.pathname;
+          // console.log(link0);
+          // console.log("Path: " + link0.pathname);
+          // console.log("Link: " + mangastream_base_url + link0.pathname); // URL to chapter
+        } catch (e) {
+          latestTitle = void 0; // so that it doesn't trigger the notifications or check block
+
+          if(e instanceof TypeError){
+            console.log("TypeError: Please check if the url is valid. If the url is working, it could be an internet issue.");
+            console.log("Error thrown with URL: " + url);
+          } else {
+            console.log(e);
+          }
+        }
       }
 
       if (latestTitle !== void 0) {
@@ -114,7 +141,7 @@ function getContent(links, ind) {
             }
             // else {
             //   // No new chapters case. Can be used to test features while debugging. Should be commented out in release versions.
-            //   console.log("No new chapters for " + latestUrl);
+            //   // console.log("No new chapters for " + latestUrl);
             //   // to test the notifs
             //   notify({
             //     type: "basic",
