@@ -13,6 +13,7 @@ function notify(message) {
     "title": data.title,
     "message": data.content
   });
+  browser.runtime.sendMessage("@notification-sound", "new-notification");
 }
 
 function notifClicked(notifId) {
